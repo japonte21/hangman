@@ -37,8 +37,6 @@ askew
 at
 attack
 attempt
-
-
 attention
 attraction
 authority
@@ -828,7 +826,6 @@ street
 strength
 strengths
 stretch
-
 strong
 stronghold
 structure
@@ -849,7 +846,6 @@ syndrome
 tail
 take
 tall
-
 taste
 tax
 teaching
