@@ -1,7 +1,9 @@
 // program to run a simple game of Hangman with either 1 or 2 players
-// (c) 2019
+// (c) 2019 josiel m. aponte
+// version: 1.0.0
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -125,11 +127,12 @@ public class Hangman {
     // playing the game with someone else, first user inputs and second user plays, then switches
     public static void twoPlayer() {
         int incorrectGuessCount = 0;
-        
+        Console console = System.console();
+	
         // taking in the word from the non-guessing player
         printLine();
-        System.out.print("Non-guessing player, what word will you be selecting?: ");
-        String answer = s.next().toLowerCase();
+	// using readPassword to ensure other player can't see the input for word being guessed
+        String answer = new String(console.readPassword("Non-guessing player, what word will you be selecting?: ")).toLowerCase();
         checkQuit(answer);
         
         // make an array based on the world selected from list
@@ -143,7 +146,6 @@ public class Hangman {
         boolean endGame = false;
         List<String> lettersGuessed = new ArrayList<String>();
         int incorrectGuessCount = 0;
-        System.out.println(answer);
         
         // while loop of continuous guessing until the word is solved or guess count is at 6
         while(!endGame) {
@@ -157,12 +159,14 @@ public class Hangman {
             String letter_guess = s.next().toLowerCase();
             checkQuit(letter_guess);
             if (letter_guess.length() > 1) {
+		printLine();
                 System.out.println("Please only guess a single letter at a time.");
                 continue;
             }
             
             // checking if the letter has already been guessed
             if (lettersGuessed.contains(letter_guess)) {
+		printLine();
                 System.out.println("That letter has already been guessed. Please try again.");
                 continue;
             }
