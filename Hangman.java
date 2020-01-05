@@ -1,6 +1,6 @@
 // program to run a simple game of Hangman with either 1 or 2 players
 // (c) 2019 josiel m. aponte
-// version: 1.0.0
+// version: 1.1.0
 
 import java.io.BufferedReader;
 import java.io.Console;
@@ -16,11 +16,12 @@ public class Hangman {
     // periodically checks to see if user would like to quit the game
     public static void checkQuit(String input) {
         if (input.equals("quit")) {
+            System.out.println("\nGoodbye.");
             System.exit(0);
         }
     }
     
-    // selects a random word from list of words for user to Guess
+    // selects a random word from list of words for user to guess
     public static String selectWord() {
         // initialize objects
         List<String> words = new ArrayList<String>();
@@ -47,12 +48,18 @@ public class Hangman {
     }
     
     // makes the initial guess array based on the length of word being guessed
-    public static String[] makeGuessArray(int n) {
-        String result[] = new String[n];
+    public static String[] makeGuessArray(String str) {
+        String result[] = new String[str.length()];
 	
         // fills array with blank values
-        for (int i = 0; i < n; i++) {
-            result[i] = "-";
+        for (int i = 0; i < str.length(); i++) {
+            // allows for multiple words to be used in answer
+            if (str.charAt(i) == ' ') {
+                result[i] = " ";
+            }
+            else {
+                result[i] = "-";
+            }
         }
         
         return result;
@@ -62,14 +69,9 @@ public class Hangman {
     public static String toString(String array[]) {
         String s = "";
         for (int i = 0; i < array.length; i++) {
-            if (i < array.length-1) {
-                s += array[i] + " ";
-            }
-            else {
-                s += array[i];
-            }
+	    s += array[i];
         }
-        return "| " + s + " |";
+        return "< " + s + " >";
     }
     
     public static void printLine() {
@@ -112,31 +114,29 @@ public class Hangman {
         }
     }
     
-    // playing the game on own, has to access dictionary of words
+    // playing the game on own, has to access list of words
     public static void singlePlayer() {
-        int incorrectGuessCount = 0;
         String answer = selectWord().toLowerCase();
         
         // make an array based on the world selected from list
-        String guess[] = makeGuessArray(answer.length());
+        String guess[] = makeGuessArray(answer);
 	
         // guessing commeneces and each char input is checked to see if it is in the answer
         startGuessing(answer, guess, 1);
     }
     
-    // playing the game with someone else, first user inputs and second user plays, then switches
+    // playing the game with someone else, first user inputs and second user plays
     public static void twoPlayer() {
-        int incorrectGuessCount = 0;
         Console console = System.console();
 	
         // taking in the word from the non-guessing player
         printLine();
-	// using readPassword to ensure other player can't see the input for word being guessed
-        String answer = new String(console.readPassword("Non-guessing player, what word will you be selecting?: ")).toLowerCase();
+        // using readPassword to ensure other player can't see the input for word being guessed
+        String answer = new String(console.readPassword("Non-guessing player, what word/phrase will you be selecting?: ")).toLowerCase();
         checkQuit(answer);
         
-        // make an array based on the world selected from list
-        String guess[] = makeGuessArray(answer.length());
+        // make an array based on the word selected from list
+        String guess[] = makeGuessArray(answer);
 	
         // guessing commeneces and each char input is checked to see if it is in the answer
         startGuessing(answer, guess, 2);
@@ -159,14 +159,14 @@ public class Hangman {
             String letter_guess = s.next().toLowerCase();
             checkQuit(letter_guess);
             if (letter_guess.length() > 1) {
-		printLine();
+                printLine();
                 System.out.println("Please only guess a single letter at a time.");
                 continue;
             }
             
             // checking if the letter has already been guessed
             if (lettersGuessed.contains(letter_guess)) {
-		printLine();
+                printLine();
                 System.out.println("That letter has already been guessed. Please try again.");
                 continue;
             }
@@ -184,10 +184,10 @@ public class Hangman {
                 array[index] = letter_guess;
                 
                 //checks if the letter appears again
-                int index2 = answer.indexOf(letter_guess, index+1);
+                int index2 = answer.indexOf(letter_guess, index + 1);
                 while (index2 != -1) {
                     array[index2] = letter_guess;
-                    index2 = answer.indexOf(letter_guess, index2+1);
+                    index2 = answer.indexOf(letter_guess, index2 + 1);
                 }
             } else {
                 System.out.println(letter_guess + " is not in the word...");
@@ -197,28 +197,33 @@ public class Hangman {
             // end of game, lost
             if (incorrectGuessCount == 6) {
                 Body.printBody(incorrectGuessCount);
-                System.out.println("Nice try, but the game is over! The word was '" + answer + "'. Better luck next time.");
+                System.out.println("Nice try, but the game is over! The word/phrase was '" + answer + "'. Better luck next time.");
                 endGame = true;
             }
             
             // end of game, win
             if (checkWin(array)) {
                 Body.printBody(incorrectGuessCount);
-                System.out.println("Good job, you won! The word was '" + answer + "'. Feel free to play again!");
+                System.out.println("Good job, you won! The word/phrase was '" + answer + "'. Feel free to play again!");
                 endGame = true;
             }
         }
         
         // checking if the user wants to play again
-        System.out.print("Would you like to play again? ([Y]es / [N]o) ");
+        System.out.print("\nWould you like to play again? ([Y]es / [N]o) ");
         String input = s.next().toLowerCase();
         
         // checks mainly for a yes, anything else is essentially a no
         if (input.equals("yes") || input.equals("y")) {
-            printLine();
-            gameIntro();
+            if (players == 1) {
+                printLine();
+                singlePlayer();
+            }
+            else {
+                twoPlayer();
+            }
         } else {
-            System.out.println("Goodbye.");
+            System.out.println("\nGoodbye.");
         }
     }
     

@@ -1,5 +1,5 @@
 # Hangman
-```Version 1.0.0```
+```Version 1.1.0```
 
 This is a group of Java files that simulates a game of Hangman. The game could be played with either one or two players, with the program providing a word in a single player session and someone else providing a word in a two-player session.
 
@@ -21,7 +21,11 @@ Ensure that you have a version of Java compatiable with your local machine. To c
 
 ## Versions
 
-Latest Version: ```1.0.0```
+Latest Version: ```1.1.0```
+
+- ```1.1.0```
+  - Allows for more than one word or a phrase to be guessed
+  - Added phrases to ```WordList.txt```  
 
 - ```1.0.0```: First complete running version of the game. Comes with the following features:
   - Single Player version sourcing words from ```WordList.txt``` 

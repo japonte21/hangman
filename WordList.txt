@@ -1,6 +1,10 @@
+1984
+a song of ice and fire
+a wrinkle in time
 able
 about
 abruptly
+abstract data type
 absurd
 abyss
 acid
@@ -15,24 +19,29 @@ against
 agreement
 air
 all
+all the light that we cannot see
 almost
 amount
 amusement
+and then there were none
 android
 angle
 angry
 animal
+animal farm
 answer
 ant
 any
 apparatus
 apple
+application programming interface
 approval
 arch
 argument
 arm
 army
 art
+artificial intelligence
 askew
 at
 attack
@@ -72,6 +81,7 @@ berry
 between
 big
 bikini
+binary tree
 bird
 birth
 bit
@@ -93,7 +103,7 @@ bone
 book
 bookworm
 boot
-Boston
+boston
 bottle
 box
 boxcar
@@ -101,11 +111,12 @@ boy
 brake
 branch
 brass
+brave new world
 bread
 breath
 bridge
 bright
-Brooklyn
+brooklyn
 brother
 brown
 brush
@@ -131,16 +142,19 @@ carriage
 cart
 case
 cat
+central processing unit
 certain
 chain
 chalk
 chance
 change
+charlie and the chocolate factory
 cheap
 chemical
 chest
 chin
 circle
+city of bones
 clean
 clear
 clock
@@ -162,6 +176,7 @@ company
 comparison
 competition
 complex
+computer science
 connection
 control
 cook
@@ -189,6 +204,7 @@ cycle
 daiquiri
 damage
 danger
+data type
 daughter
 dead
 dear
@@ -215,6 +231,7 @@ disease
 disgust
 distance
 distribution
+divide and conquer
 division
 dizzying
 do
@@ -224,6 +241,7 @@ doubt
 down
 drain
 drawer
+dream of the red chamber
 drink
 driving
 drop
@@ -258,6 +276,7 @@ expert
 eye
 face
 fact
+fahrenheit 451
 faking
 fall
 false
@@ -323,6 +342,7 @@ future
 gabby
 galaxy
 galvanize
+game theory
 garden
 gazebo
 get
@@ -386,7 +406,7 @@ house
 how
 humour
 hyphen
-I
+i
 iatrogenic
 icebox
 idea
@@ -400,6 +420,7 @@ ink
 insect
 instrument
 insurance
+integrated development environment
 interest
 invention
 iron
@@ -407,6 +428,7 @@ ivory
 ivy
 jackpot
 jaundice
+java is cool
 jawbreaker
 jaywalk
 jazz
@@ -471,6 +493,7 @@ letter
 level
 library
 life
+life of pi
 lift
 light
 like
@@ -486,6 +509,7 @@ lock
 long
 look
 loose
+lord of the flies
 loss
 loud
 love
@@ -494,6 +518,7 @@ lucky
 luxury
 lymph
 machine
+machine learning
 male
 man
 manager
@@ -568,6 +593,7 @@ nowadays
 number
 numbskull
 nymph
+object oriented programming
 observation
 of
 off
@@ -603,6 +629,7 @@ paint
 pajama
 paper
 parallel
+parallel computing
 parcel
 part
 past
@@ -642,6 +669,7 @@ powder
 power
 present
 price
+pride and prejudice
 print
 prison
 private
@@ -650,6 +678,7 @@ problem
 process
 produce
 profit
+programming language
 property
 prose
 protest
@@ -782,6 +811,7 @@ soap
 society
 sock
 soft
+software engineer
 solid
 some
 son
@@ -853,6 +883,23 @@ tendency
 test
 than
 that
+the alchemist
+the book thief
+the cat in the hat
+the catcher in the rye
+the da vinci code
+the diary of a young girl
+the fault in our stars
+the girl with the dragon tattoo
+the giver
+the godfather
+the gospel according to peanuts
+the great gatsby
+the hobbit
+the little prince
+the perks of being a wallflower
+the quick brown fox jumps over the lazy dog
+the underground railroad
 then
 theory
 there
@@ -860,6 +907,7 @@ thick
 thin
 thing
 think
+think and grow rich
 this
 thread
 thriftless
@@ -875,6 +923,7 @@ time
 tin
 tired
 to
+to kill a mockingbird
 toady
 toe
 together
@@ -915,6 +964,7 @@ very
 vessel
 view
 violent
+virtual machine
 vodka
 voice
 voodoo
@@ -926,6 +976,7 @@ walkway
 waltz
 want
 war
+war and peace
 warm
 wash
 waste
