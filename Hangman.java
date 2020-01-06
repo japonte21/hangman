@@ -1,6 +1,6 @@
 // program to run a simple game of Hangman with either 1 or 2 players
 // (c) 2019 josiel m. aponte
-// version: 1.1.0
+// version: 1.2.0
 
 import java.io.BufferedReader;
 import java.io.Console;
@@ -10,8 +10,14 @@ import java.util.*;
 
 public class Hangman {
     static Scanner s = new Scanner(System.in);
+    static ArrayList<String> hints = new ArrayList<String>();
     
     /* HELPER FUNCTIONS TO MAKE SURE GAME RUNS SMOOTHLY */
+    
+    // prints
+    public static void answerHints(int hintCount) {
+        System.out.println("Hint #" + ++hintCount + ": " + hints.get(--hintCount) + "\n");
+    }
     
     // periodically checks to see if user would like to quit the game
     public static void checkQuit(String input) {
@@ -122,7 +128,7 @@ public class Hangman {
         String guess[] = makeGuessArray(answer);
 	
         // guessing commeneces and each char input is checked to see if it is in the answer
-        startGuessing(answer, guess, 1);
+        startGuessing(answer, guess, 1, false);
     }
     
     // playing the game with someone else, first user inputs and second user plays
@@ -138,11 +144,27 @@ public class Hangman {
         // make an array based on the word selected from list
         String guess[] = makeGuessArray(answer);
 	
-        // guessing commeneces and each char input is checked to see if it is in the answer
-        startGuessing(answer, guess, 2);
+        // checks if hints will be provided to the guessing player
+        System.out.print("\nWould you like to provide hints for the last 3 guesses? ([Y]es / [N]o) ");
+        String input = s.next().toLowerCase();
+                
+        // if yes, adds hints to an array to later be returned
+        if (input.equals("yes") || input.equals("y")) {
+            String hint1 = new String(console.readPassword("What is the first hint? (3 guesses left): "));
+            String hint2 = new String(console.readPassword("What is the second hint? (2 guesses left) "));
+            String hint3 = new String(console.readPassword("What is the last hint? (1 guess left): "));
+            hints.add(hint1);
+            hints.add(hint2);
+            hints.add(hint3);
+            // guessing commeneces with hints
+            startGuessing(answer, guess, 2, true);
+        } else {
+            // guessing commeneces without hints
+            startGuessing(answer, guess, 2, false);
+        }
     }
     
-    public static void startGuessing(String answer, String array[], int players) {
+    public static void startGuessing(String answer, String array[], int players, boolean hints) {
         boolean endGame = false;
         List<String> lettersGuessed = new ArrayList<String>();
         int incorrectGuessCount = 0;
@@ -151,6 +173,12 @@ public class Hangman {
         while(!endGame) {
             // print the UI of hangman, guessed letters and their progress towards the answer
             Body.printBody(incorrectGuessCount);
+            
+            // checks if hints will be provided for the turn
+            if (hints && incorrectGuessCount >= 3) {
+                answerHints(incorrectGuessCount-3);
+            }
+            
             System.out.println("Progress towards answer: " + toString(array));
             System.out.println("Letters Guessed: " + lettersGuessed);
             

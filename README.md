@@ -1,7 +1,7 @@
 # Hangman
-```Version 1.1.0```
+Latest Version: ```1.2.0```
 
-This is a group of Java files that simulates a game of Hangman. The game could be played with either one or two players, with the program providing a word in a single player session and someone else providing a word in a two-player session.
+This is a group of Java files that simulates a game of [Hangman](https://en.wikipedia.org/wiki/Hangman_(game)). The game could be played with either one or two players, with the program providing a word in a single player session and someone else providing a word in a two-player session.
 
 ## Getting Started
 
@@ -20,8 +20,8 @@ This will allow you to have a copy of the project on your local machine availabl
 Ensure that you have a version of Java compatiable with your local machine. To check this, run the command ```java -version``` in terminal. If you don't have Java, download the latest version compatiable with you machine on the [Java SE website](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html).
 
 ## Versions
-
-Latest Version: ```1.1.0```
+- ```1.2.0```
+  - Added the ability for the non-guessing user to added 3 hints for their answer 
 
 - ```1.1.0```
   - Allows for more than one word or a phrase to be guessed
