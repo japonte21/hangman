@@ -17,7 +17,7 @@ This will allow you to have a copy of the project on your local machine availabl
 
 ### Prerequisites
 
-Ensure that you have a version of Java compatiable with your local machine. To check this, run the command ```java -version``` in terminal. If you don't have Java, download the latest version compatiable with you machine on the [Java SE website](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html).
+Ensure that you have a version of Java compatiable with your local machine. To check this, run the command ```java -version``` in terminal. If you don't have Java, download the latest version compatiable with you machine on the [Java SE Development Kit website](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 ## Versions
 - ```1.2.0```
