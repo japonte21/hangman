@@ -1,6 +1,7 @@
-// program to run a simple game of Hangman with either 1 or 2 players
-// (c) 2019 josiel m. aponte
-// version: 1.2.0
+/* program to run a simple game of Hangman with either 1 or 2 players
+ * (c) 2019 josiel m. aponte
+ * version: 1.2.1
+*/
 
 import java.io.BufferedReader;
 import java.io.Console;
@@ -9,18 +10,23 @@ import java.io.IOException;
 import java.util.*;
 
 public class Hangman {
-    static Scanner s = new Scanner(System.in);
-    static ArrayList<String> hints = new ArrayList<String>();
-    
+    private Scanner s = new Scanner(System.in);
+    private ArrayList<String> hints;
+
+    // constructor method for the program
+    public Hangman() {
+        hints = new ArrayList<>();
+    }
+
     /* HELPER FUNCTIONS TO MAKE SURE GAME RUNS SMOOTHLY */
-    
-    // prints
-    public static void answerHints(int hintCount) {
+
+    // prints out hints inputted by non-guessing user
+    private void answerHints(int hintCount) {
         System.out.println("Hint #" + ++hintCount + ": " + hints.get(--hintCount) + "\n");
     }
     
     // periodically checks to see if user would like to quit the game
-    public static void checkQuit(String input) {
+    private void checkQuit(String input) {
         if (input.equals("quit")) {
             System.out.println("\nGoodbye.");
             System.exit(0);
@@ -28,9 +34,9 @@ public class Hangman {
     }
     
     // selects a random word from list of words for user to guess
-    public static String selectWord() {
+    private String selectWord() {
         // initialize objects
-        List<String> words = new ArrayList<String>();
+        List<String> words = new ArrayList<>();
         Random rand = new Random();
 	
         // initialize variables
@@ -52,10 +58,10 @@ public class Hangman {
         
         return words.get(rand_int);
     }
-    
+
     // makes the initial guess array based on the length of word being guessed
-    public static String[] makeGuessArray(String str) {
-        String result[] = new String[str.length()];
+    private String[] makeGuessArray(String str) {
+        String[] result = new String[str.length()];
 	
         // fills array with blank values
         for (int i = 0; i < str.length(); i++) {
@@ -72,21 +78,21 @@ public class Hangman {
     }
     
     // visualization of an array to the user
-    public static String toString(String array[]) {
-        String s = "";
-        for (int i = 0; i < array.length; i++) {
-	    s += array[i];
+    private String toString(String[] array) {
+        StringBuilder s = new StringBuilder();
+        for (String s1 : array) {
+            s.append(s1);
         }
         return "< " + s + " >";
     }
     
-    public static void printLine() {
+    private void printLine() {
         System.out.println("\n--------------------------------------------------------------------------------\n");
     }
     
-    public static boolean checkWin(String array[]) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].equals("-")) {
+    private boolean checkWin(String[] array) {
+        for (String s1 : array) {
+            if (s1.equals("-")) {
                 return false;
             }
         }
@@ -96,7 +102,7 @@ public class Hangman {
     /* GAME FUNCTIONS */
     
     // starts game and asks if playing solo or with someone else
-    public static void gameIntro() {
+    private void gameIntro() {
         System.out.println("Hello, and welcome to Hangman!");
         System.out.print("\nHow many people are playing? (1 player or 2 players): ");
         String input = s.next();
@@ -121,54 +127,54 @@ public class Hangman {
     }
     
     // playing the game on own, has to access list of words
-    public static void singlePlayer() {
+    private void singlePlayer() {
         String answer = selectWord().toLowerCase();
         
         // make an array based on the world selected from list
-        String guess[] = makeGuessArray(answer);
+        String[] guess = makeGuessArray(answer);
 	
-        // guessing commeneces and each char input is checked to see if it is in the answer
+        // guessing commences and each char input is checked to see if it is in the answer
         startGuessing(answer, guess, 1, false);
     }
     
     // playing the game with someone else, first user inputs and second user plays
-    public static void twoPlayer() {
+    private void twoPlayer() {
         Console console = System.console();
-	
+
         // taking in the word from the non-guessing player
         printLine();
         // using readPassword to ensure other player can't see the input for word being guessed
         String answer = new String(console.readPassword("Non-guessing player, what word/phrase will you be selecting?: ")).toLowerCase();
         checkQuit(answer);
-        
+
         // make an array based on the word selected from list
-        String guess[] = makeGuessArray(answer);
-	
+        String[] guess = makeGuessArray(answer);
+
         // checks if hints will be provided to the guessing player
         System.out.print("\nWould you like to provide hints for the last 3 guesses? ([Y]es / [N]o) ");
         String input = s.next().toLowerCase();
-                
+
         // if yes, adds hints to an array to later be returned
         if (input.equals("yes") || input.equals("y")) {
             String hint1 = new String(console.readPassword("What is the first hint? (3 guesses left): "));
             String hint2 = new String(console.readPassword("What is the second hint? (2 guesses left) "));
             String hint3 = new String(console.readPassword("What is the last hint? (1 guess left): "));
-            hints.add(hint1);
-            hints.add(hint2);
-            hints.add(hint3);
-            // guessing commeneces with hints
+            hints.add(0, hint1);
+            hints.add(1, hint2);
+            hints.add(2, hint3);
+            // guessing commences with hints
             startGuessing(answer, guess, 2, true);
         } else {
-            // guessing commeneces without hints
+            // guessing commences without hints
             startGuessing(answer, guess, 2, false);
         }
     }
-    
-    public static void startGuessing(String answer, String array[], int players, boolean hints) {
+
+    private void startGuessing(String answer, String[] array, int players, boolean hints) {
         boolean endGame = false;
-        List<String> lettersGuessed = new ArrayList<String>();
+        List<String> lettersGuessed = new ArrayList<>();
         int incorrectGuessCount = 0;
-        
+
         // while loop of continuous guessing until the word is solved or guess count is at 6
         while(!endGame) {
             // print the UI of hangman, guessed letters and their progress towards the answer
@@ -256,7 +262,8 @@ public class Hangman {
     }
     
     // main method - allows the user to play the game
-    public static void main(String args[]) {
-        gameIntro();
+    public static void main(String[] args) {
+        Hangman h = new Hangman();
+        h.gameIntro();
     }    
 }

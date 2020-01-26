@@ -30,3 +30,8 @@ hs_err_pid*
 # Emacs
 *~
 \#*\#
+
+# files created by IntelliJ
+.idea/
+out/
+*.iml
